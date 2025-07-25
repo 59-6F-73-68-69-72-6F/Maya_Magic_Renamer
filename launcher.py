@@ -8,7 +8,7 @@ Enjoy !
 import sys
 from importlib import reload
 
-directory = r"YOUR_PATH\Magic_Renamer"
+directory = r"YOUR_PATH\Maya_Magic_Renamer"
 if directory not in sys.path:
     sys.path.append(directory)
 
