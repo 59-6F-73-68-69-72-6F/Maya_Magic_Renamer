@@ -21,14 +21,14 @@ class MagicRenamer(QWidget):
     replace_signal_request = Signal(str, str)
     
     def __init__(self):
-        """Initializes the MagicRenamer widget, builds the UI, and connects signals."""
+        """ Initializes the MagicRenamer widget, builds the UI, and connects signals. """
         super().__init__()
         self.buildUI()
         self.connect_signals()
 
     # SET WINDOW --------------------------------------------
     def buildUI(self):
-        """Constructs and arranges all the UI elements for the UI widget."""
+        """ Constructs and arranges all the UI elements for the UI widget. """
         # WINDOW ---
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)  # KEEP WINDOW ON TOP
         self.setFixedSize(310,460)
@@ -177,9 +177,7 @@ class MagicRenamer(QWidget):
         return button
     
     def splitter(self) -> QFrame:
-        """
-        Creates a QFrame to be used as a horizontal separator with predefined styling.
-        """
+        """ Creates a QFrame to be used as a horizontal separator with predefined styling. """
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setFrameShadow(QFrame.Sunken)
@@ -189,7 +187,7 @@ class MagicRenamer(QWidget):
 
     # SIGNALS --------------------------------------------
     def connect_signals(self):
-        """Connects UI element signals (e.g., button clicks) to their corresponding slots."""
+        """ Connects UI element signals (e.g., button clicks) to their corresponding slots. """
         self.EntryNameInsert.returnPressed.connect(self.on_name)
         self.ButtonName.clicked.connect(self.on_name)
         
@@ -203,25 +201,25 @@ class MagicRenamer(QWidget):
 
     # EMITTERS --------------------------------------
     def on_name(self):
-        """Slot for the rename action. Emits the rename_signal_request with the new name."""
+        """ Slot for the rename action. Emits the rename_signal_request with the new name. """
         new_name = self.EntryNameInsert.text()
         self.rename_signal_request.emit(new_name)
         self.EntryNameInsert.clear()
         
     def on_prefix(self):
-        """Slot for the add prefix action. Emits the prefix_signal_request with the new prefix."""
+        """ Slot for the add prefix action. Emits the prefix_signal_request with the new prefix. """
         new_prefix = self.EntryPrefix.text()
         self.prefix_signal_request.emit(new_prefix)
         self.EntryPrefix.clear()
         
     def on_suffix(self):
-        """Slot for the add suffix action. Emits the suffix_signal_request with the new suffix."""
+        """ Slot for the add suffix action. Emits the suffix_signal_request with the new suffix. """
         new_suffix = self.EntrySuffix.text()
         self.suffix_signal_request.emit(new_suffix)
         self.EntrySuffix.clear()
     
     def on_replace(self):
-        """Slot for the search and replace action. Emits the replace_signal_request with the search and replace text."""
+        """ Slot for the search and replace action. Emits the replace_signal_request with the search and replace text. """
         search_text = self.EntrySearch.text()
         replace_text = self.EntryReplace.text()
         self.replace_signal_request.emit(search_text, replace_text)
