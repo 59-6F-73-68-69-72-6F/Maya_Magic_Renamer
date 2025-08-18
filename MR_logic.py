@@ -9,10 +9,10 @@ class RenamerLogic(QObject):
     from the UI. It directly uses Maya commands (`maya.cmds`) to manipulate
     objects in the current scene.
     """
-    
+
     def __init__(self):
         super().__init__()
-    
+
     def rename(self, new_name: str):
         """
         Renames selected DAG nodes.
@@ -25,11 +25,11 @@ class RenamerLogic(QObject):
             selection = m.ls(selection=True)
             try:
                 for shape in selection:
-                    m.rename(shape,new_name)
+                    m.rename(shape, new_name)
             except RuntimeError as e:
 
                 pass
-                
+
     def prefix(self, prefix_name: str):
         """
         Adds a prefix to the name of each selected DAG node.
@@ -40,7 +40,7 @@ class RenamerLogic(QObject):
             selection = m.ls(selection=True)
             try:
                 for shape in selection:
-                    m.rename(shape,prefix_name + shape)
+                    m.rename(shape, prefix_name + shape)
             except RuntimeError as e:
                 pass
 
@@ -54,15 +54,15 @@ class RenamerLogic(QObject):
             selection = m.ls(selection=True)
             try:
                 for shape in selection:
-                    m.rename(shape,shape + suffix_name)
+                    m.rename(shape, shape + suffix_name)
             except RuntimeError as e:
 
                 pass
-            
+
     def replace(self, search_text: str, replace_text: str):
         """
         Performs a search and replace on object names.
-        
+
         The behavior depends on whether objects are selected:
         - If objects are selected: Performs search and replace on the names of
           the selected objects only.
@@ -86,8 +86,8 @@ class RenamerLogic(QObject):
                         transform = m.listRelatives(node, parent=True)
                         if transform:
                             new_name = transform[0].replace(search_text, replace_text)
-                            m.rename(transform[0],new_name)
-                            
+                            m.rename(transform[0], new_name)
+
             except RuntimeError as e:
                 pass
         # ON SELECTION ---
@@ -96,7 +96,7 @@ class RenamerLogic(QObject):
                 for shape in selection:
                     if search_text in shape:
                         new_name = shape.replace(search_text, replace_text)
-                        m.rename(shape,new_name)
+                        m.rename(shape, new_name)
             except RuntimeError as e:
                 pass
         # ERROR MESSAGE ---

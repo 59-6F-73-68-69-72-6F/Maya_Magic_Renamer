@@ -1,4 +1,4 @@
-from Qt.QtWidgets import QWidget,QLabel,QLineEdit,QPushButton,QVBoxLayout,QHBoxLayout,QFrame
+from Qt.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QFrame
 from Qt.QtGui import QFont
 from Qt.QtCore import Qt, Signal
 
@@ -19,7 +19,7 @@ class MagicRenamer(QWidget):
     prefix_signal_request = Signal(str)
     suffix_signal_request = Signal(str)
     replace_signal_request = Signal(str, str)
-    
+
     def __init__(self):
         """ Initializes the MagicRenamer widget, builds the UI, and connects signals. """
         super().__init__()
@@ -31,15 +31,15 @@ class MagicRenamer(QWidget):
         """ Constructs and arranges all the UI elements for the UI widget. """
         # WINDOW ---
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)  # KEEP WINDOW ON TOP
-        self.setFixedSize(310,460)
+        self.setFixedSize(310, 460)
         self.setWindowTitle("Magic Renamer")
         self.window().setStyleSheet(" background-color: #393E46  ;")
-        
+
         # MAIN LAYOUT ---
         main_layout = QVBoxLayout()
-        main_layout.setContentsMargins(3,0,3,30)
+        main_layout.setContentsMargins(3, 0, 3, 30)
         main_layout.setSpacing(4)
-        
+
         # SEPARATOR ---
         self.sep1_layout = QHBoxLayout()
         self.sep2_layout = QHBoxLayout()
@@ -53,7 +53,7 @@ class MagicRenamer(QWidget):
         separator_4 = self.splitter()
         separator_5 = self.splitter()
         separator_6 = self.splitter()
-        
+
         # ROW 0 ---
         row0_layout = QHBoxLayout()
         self.logo = QLabel()
@@ -62,43 +62,42 @@ class MagicRenamer(QWidget):
         # ROW 1 ---
         row1_layout = QHBoxLayout()
         NameInsert = self.label_text("Name:")
-        NameInsert.setContentsMargins(0,30,0,0)
-        
-        #ROW 2 ---
+        NameInsert.setContentsMargins(0, 30, 0, 0)
+
+        # ROW 2 ---
         row2_layout = QHBoxLayout()
         self.EntryNameInsert = self.bar_text("Name")
         self.ButtonName = self.push_button("N")
-        
+
         # ROW 3 ---
         row3_layout = QHBoxLayout()
         PreSuf = self.label_text("Prefix/Suffix:")
-        PreSuf.setContentsMargins(0,30,0,0)
-        
+        PreSuf.setContentsMargins(0, 30, 0, 0)
+
         # ROW 4 ---
         row4_layout = QHBoxLayout()
         self.EntryPrefix = self.bar_text("Prefix")
         self.ButtonPrefix = self.push_button("P")
-        
+
         # ROW 5 ---
         row5_layout = QHBoxLayout()
         self.EntrySuffix = self.bar_text("Suffix")
         self.ButtonSuffix = self.push_button("S")
-        
+
         # ROW 6 ---
         row6_layout = QHBoxLayout()
         SearchReplace = self.label_text("Search/Replace:")
-        SearchReplace.setContentsMargins(0,30,0,0)
-        
+        SearchReplace.setContentsMargins(0, 30, 0, 0)
+
         # ROW 7 ---
         row7_layout = QHBoxLayout()
         self.EntrySearch = self.bar_text("Search")
-        
+
         # ROW 8 ---
         row8_layout = QHBoxLayout()
         self.EntryReplace = self.bar_text("Replace")
         self.ButtonReplace = self.push_button("R")
-        
-        
+
         # ADD SEPARATORS TO LAYOUTS ---
         self.sep1_layout.addWidget(separator_1)
         self.sep2_layout.addWidget(separator_2)
@@ -106,7 +105,7 @@ class MagicRenamer(QWidget):
         self.sep4_layout.addWidget(separator_4)
         self.sep5_layout.addWidget(separator_5)
         self.sep6_layout.addWidget(separator_6)
-        
+
         # HORIZONTAL LAYOUTS ---
         row0_layout.addWidget(self.logo)
         row1_layout.addWidget(NameInsert)
@@ -138,50 +137,50 @@ class MagicRenamer(QWidget):
         main_layout.addLayout(row7_layout)
         main_layout.addLayout(row8_layout)
         main_layout.addLayout(self.sep6_layout)
-        
+
         self.setLayout(main_layout)
 
     # GENERIC WIDGETS --------------------------------------------
-    def label_text(self,text: str) -> QLabel:
+    def label_text(self, text: str) -> QLabel:
         """
         Creates a QLabel with predefined styling.
         Args:
             text (str): The text to display on the label.
         """
         label = QLabel(text=text)
-        label.setFont(QFont(FONT,FONT_SIZE))
+        label.setFont(QFont(FONT, FONT_SIZE))
         label.setStyleSheet(f"color:{COLOR_TITLE}")
         return label
 
-    def bar_text(self,text:str=None) -> QLineEdit:
+    def bar_text(self, text: str = None) -> QLineEdit:
         """
         Creates a QLineEdit with predefined styling.
         Args:
             text (str, optional): The placeholder text for the line edit. Defaults to None.
         """
         line_edit = QLineEdit(placeholderText=text)
-        line_edit.setFont(QFont(FONT,FONT_SIZE))
+        line_edit.setFont(QFont(FONT, FONT_SIZE))
         line_edit.setStyleSheet(f" background-color: {COLOR_ENTRY} ; color: {TEXT_COLOR};")
         return line_edit
 
-    def push_button(self,text:str) -> QPushButton:
+    def push_button(self, text: str) -> QPushButton:
         """
         Creates a QPushButton with predefined styling.
         Args:
             text (str): The text to display on the button.
         """
         button = QPushButton(text)
-        button.setFont(QFont(FONT,FONT_SIZE))
-        button.setFixedSize(80,23)
+        button.setFont(QFont(FONT, FONT_SIZE))
+        button.setFixedSize(80, 23)
         button.setStyleSheet(f" background-color: #2a9d8f ; color:#222831;")
         return button
-    
+
     def splitter(self) -> QFrame:
         """ Creates a QFrame to be used as a horizontal separator with predefined styling. """
         separator = QFrame()
         separator.setFrameShape(QFrame.HLine)
         separator.setFrameShadow(QFrame.Sunken)
-        separator.setFixedSize(300,2)
+        separator.setFixedSize(300, 2)
         separator.setStyleSheet(f"background-color: #c0c0c0;")
         return separator
 
@@ -190,13 +189,13 @@ class MagicRenamer(QWidget):
         """ Connects UI element signals (e.g., button clicks) to their corresponding slots. """
         self.EntryNameInsert.returnPressed.connect(self.on_name)
         self.ButtonName.clicked.connect(self.on_name)
-        
+
         self.EntryPrefix.returnPressed.connect(self.on_prefix)
         self.ButtonPrefix.clicked.connect(self.on_prefix)
-        
+
         self.EntrySuffix.returnPressed.connect(self.on_suffix)
         self.ButtonSuffix.clicked.connect(self.on_suffix)
-        
+
         self.ButtonReplace.clicked.connect(self.on_replace)
 
     # EMITTERS --------------------------------------
@@ -205,19 +204,19 @@ class MagicRenamer(QWidget):
         new_name = self.EntryNameInsert.text()
         self.rename_signal_request.emit(new_name)
         self.EntryNameInsert.clear()
-        
+
     def on_prefix(self):
         """ Slot for the add prefix action. Emits the prefix_signal_request with the new prefix. """
         new_prefix = self.EntryPrefix.text()
         self.prefix_signal_request.emit(new_prefix)
         self.EntryPrefix.clear()
-        
+
     def on_suffix(self):
         """ Slot for the add suffix action. Emits the suffix_signal_request with the new suffix. """
         new_suffix = self.EntrySuffix.text()
         self.suffix_signal_request.emit(new_suffix)
         self.EntrySuffix.clear()
-    
+
     def on_replace(self):
         """ Slot for the search and replace action. Emits the replace_signal_request with the search and replace text. """
         search_text = self.EntrySearch.text()
