@@ -12,7 +12,7 @@ directory = r"YOUR_PATH\Maya_Magic_Renamer"
 if directory not in sys.path:
     sys.path.append(directory)
 
-import main
-reload(main)
-main
+import mmr_main
+reload(mmr_main)
+mmr_main
 print("Launched Magic Renamer.")
