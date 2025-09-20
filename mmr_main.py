@@ -5,17 +5,18 @@
 # MAGIC RENAMER UI
 ######################################################
 
+import os
 
 from Qt.QtGui import QPixmap
-import MR_logic
-import MR_UI
-import os
+
+import mr_logic
+import mr_UI
 
 logic = None
 ui = None
 
 
-def getMayaMainWindow() -> MR_UI.MagicRenamer:
+def getMayaMainWindow() -> mr_UI.MagicRenamer:
     """Initializes and displays the Magic Renamer UI window.
 
     This function serves as the main entry point for the tool. It performs
@@ -29,12 +30,10 @@ def getMayaMainWindow() -> MR_UI.MagicRenamer:
         communication between the front-end and the back-end operations.
     4.  Displays the UI window.
 
-    Returns:
-        MR_UI.MagicRenamer: The instance of the created UI window.
     """
     global ui, logic
-    ui = MR_UI.MagicRenamer()
-    logic = MR_logic.RenamerLogic()
+    ui = mr_UI.MagicRenamer()
+    logic = mr_logic.RenamerLogic()
 
     # LOAD LOGO IMAGE
     script_path = os.path.dirname(os.path.abspath(__file__))  # GET THE PATH OF THE CURRENT SCRIPT
@@ -49,7 +48,6 @@ def getMayaMainWindow() -> MR_UI.MagicRenamer:
     ui.replace_signal_request.connect(logic.replace)
 
     ui.show()
-    return ui
 
 
 getMayaMainWindow()
